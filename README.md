@@ -1,5 +1,3 @@
-Here’s a well-structured `README.md` for your GitHub repository:
-
 ---
 
 # Local Chef Fit
