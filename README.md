@@ -2,7 +2,7 @@
 
 # Local Chef Fit
 
-![Local Chef Fit Logo](https://localchef.fit/favicon.ico)  
+![Local Chef Fit Logo](https://localchef.fit/cdn/shop/files/transparent_PNG.png?v=1706903414&width=140)  
 
 Welcome to **Local Chef Fit**, a platform designed to connect users with local chefs, enabling them to enjoy freshly prepared meals in their community. Explore a new way to experience culinary delights while supporting local talent.
 
