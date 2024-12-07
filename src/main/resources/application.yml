@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: Local-chef-fit
+  datasource:
+    url: jdbc:mysql://localhost:3306/local-chef-fit?useSSL=false
+    username: root
+    password:
