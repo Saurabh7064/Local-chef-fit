@@ -1,6 +1,6 @@
-package localchef.fit.repository;
+package fit.localchef.repository;
 
-import localchef.fit.models.User;
+import fit.localchef.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

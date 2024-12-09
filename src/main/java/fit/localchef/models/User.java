@@ -1,4 +1,4 @@
-package localchef.fit.models;
+package fit.localchef.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
