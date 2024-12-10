@@ -2,5 +2,7 @@ package fit.localchef.models;
 
 public enum Role {
     USER,
-    ADMIN
+    ADMIN,
+    CUSTOMER,
+    CHEF
 }
