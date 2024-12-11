@@ -1,6 +1,6 @@
 package fit.localchef.controller;
 
-import fit.localchef.models.Chef;
+import fit.localchef.models.responses.ChefDTO;
 import fit.localchef.service.ChefService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class ChefController {
 
     // Endpoint to list all chefs and their meals
     @GetMapping("/api/v1/auth/chefs")
-    public List<Chef> getAllChefs() {
+    public List<ChefDTO> getAllChefs() {
         return chefService.getAllChefsWithMeals();
     }
 }
