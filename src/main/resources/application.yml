@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/local-chef-fit?useSSL=false
     username: root
-    password: Nagina_123
+    password:
   jpa:
     hibernate:
       #ddl-auto: create-drop # Correct key for table creation
