@@ -7,7 +7,10 @@ spring:
     password:
   jpa:
     hibernate:
-      #ddl-auto: create-drop # Correct key for table creation
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+stripe:
+  secret:
+    key: sk_test_51QXFHXELPuZlz0arF93NQejkPJElOM86qKJmiB0Vqfs3eSHlf7NpWSGRSUVu5SgpkAReMyIsclkfJsUVraB68O4N002kwmrLza

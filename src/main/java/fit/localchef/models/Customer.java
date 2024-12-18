@@ -6,7 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table
 public class Customer {
@@ -23,4 +29,7 @@ public class Customer {
 
     @Column
     private String defaultDeliveryInstructions;
+
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Address> addresses; // One chef can have multiple addresses (e.g., restaurant locations)
 }
