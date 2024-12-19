@@ -12,6 +12,8 @@ import fit.localchef.repository.ChefRepository;
 import fit.localchef.repository.CustomerRepository;
 import fit.localchef.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +28,8 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final CustomerRepository customerRepository;
     private final ChefRepository chefRepository;
+    private final JavaMailSender mailSender; // Add this for email sending
+
 
     public AuthenticationResponse register(RegisterRequest request) {
         if (repository.findByEmail(request.getEmail()).isPresent()) {
@@ -98,4 +102,55 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
+
+    public String initiatePasswordReset(String email) {
+        // Check if the user exists
+        var user = repository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User with email " + email + " does not exist."));
+
+        // Generate a reset token (JWT)
+        String resetToken = jwtService.generateToken(user);
+
+        // Send the token to the user's email
+        sendResetTokenEmail(email, resetToken);
+
+        return "Password reset email sent to: " + email;
+    }
+
+    public String resetPassword(String resetToken, String newPassword) {
+        // Validate the token
+        String email = jwtService.extractUsername(resetToken);
+
+        // Fetch the user based on the email
+        var user = repository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid token or user does not exist."));
+
+        // Reset the user's password
+        user.setPassword(passwordEncoder.encode(newPassword));
+        repository.save(user);
+
+        return "Password successfully reset!";
+    }
+
+    private void sendResetTokenEmail(String email, String resetToken) {
+        try {
+            var message = mailSender.createMimeMessage();
+            var helper = new MimeMessageHelper(message, true);
+
+            helper.setTo(email);
+            helper.setSubject("Password Reset Request");
+            //this url is post need to update to get
+            helper.setText(
+                    "Click the link below to reset your password:\n" +
+                            "http://localhost:8080/api/v1/auth/reset-password/confirm?token" + resetToken,
+                    true
+            );
+
+            mailSender.send(message);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to send email", e);
+        }
+    }
+
+
 }

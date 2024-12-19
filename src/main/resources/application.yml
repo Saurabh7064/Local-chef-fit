@@ -13,6 +13,16 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
   mvc:
     log-resolved-exception: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: emosrb@gmail.com
+    password: dqpwlcalnqfamrnc
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls.enable: true
 stripe:
   secret:
     key: sk_test_51QXFHXELPuZlz0arF93NQejkPJElOM86qKJmiB0Vqfs3eSHlf7NpWSGRSUVu5SgpkAReMyIsclkfJsUVraB68O4N002kwmrLza
