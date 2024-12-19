@@ -11,6 +11,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+  mvc:
+    log-resolved-exception: true
 stripe:
   secret:
     key: sk_test_51QXFHXELPuZlz0arF93NQejkPJElOM86qKJmiB0Vqfs3eSHlf7NpWSGRSUVu5SgpkAReMyIsclkfJsUVraB68O4N002kwmrLza

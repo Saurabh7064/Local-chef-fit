@@ -90,10 +90,6 @@ public class OrderService {
         }
     }
 
-    // Fetch all orders for a customer
-    public List<Order> getOrdersByCustomer(Integer customerId) {
-        return orderRepository.findByCustomerId(customerId);
-    }
 
     public String placeOrderAndProcessPayment(Customer customer, OrderAndPaymentRequest request) throws StripeException {
         AtomicReference<Double> totalAmount = new AtomicReference<>(0.0);
@@ -145,6 +141,10 @@ public class OrderService {
 
         // Return payment status
         return charge.getPaid() ? "Payment Successful" : "Payment Failed";
+    }
+
+    public List<Order> getOrdersByCustomer(Integer customerId) {
+        return orderRepository.findByCustomerId(customerId);
     }
 
 
